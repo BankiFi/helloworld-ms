@@ -10,8 +10,9 @@ lazy val root = (project in file("."))
   .settings(
     organization := "com.bankifi",
     name := "helloworld-ms",
+    packageName in Docker := "bankifi-helloworld-ms",
     scalaVersion := "2.13.1",
-    dockerRepository := Some("alonsodomin/bankifi-helloworld-ms"),
+    dockerRepository := Some("alonsodomin"),
     dockerExposedPorts += 8080,
     dockerUpdateLatest := true,
     libraryDependencies ++= Seq(

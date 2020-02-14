@@ -17,15 +17,15 @@ object Routes {
         for {
           status <- probing.health
           resp <- status match {
-            case Probing.HealthStatus.Healthy => Ok()
+            case Probing.HealthStatus.Healthy => Ok("OK")
             case Probing.HealthStatus.Unhealthy(reason) => InternalServerError(reason)
           }
         } yield resp
 
       case GET -> Root / "ready" =>
         probing.ready.flatMap { isReady =>
-          if (isReady) Ok()
-          else InternalServerError()
+          if (isReady) Ok("OK")
+          else InternalServerError("KO")
         }
     }
   }
